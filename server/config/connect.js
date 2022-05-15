@@ -15,12 +15,6 @@ const config = {
   },
 };
 
-console.log(process.env.HOST)
-console.log(process.env.USERDB)
-console.log(process.env.PASSWORD)
-console.log(process.env.DB)
-console.log(process.env.DIALECT)
-
 const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   host: config.HOST,
   dialect: config.dialect,

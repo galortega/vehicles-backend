@@ -1,6 +1,6 @@
 import { DataTypes, Sequelize } from "sequelize";
 
-export const VehiculeModel = {
+export const VehicleModel = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -33,9 +33,8 @@ export const VehiculeModel = {
   },
 };
 
-export const VehiculelConfig = {
+export const VehicleConfig = {
+  tableName: "vehicle",
   freezeTableName: true,
-  tableName: "vehicule",
-  timestamps: true,
-  createdAt: "creation_date",
+  timestamps: false,
 };

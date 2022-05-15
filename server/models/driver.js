@@ -46,7 +46,7 @@ export const DriverModel = {
   },
 };
 
-export const DriverlConfig = {
+export const DriverConfig = {
   freezeTableName: true,
   tableName: "driver",
   timestamps: true,

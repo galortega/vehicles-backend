@@ -7,7 +7,7 @@ import app from "../app";
 import debugLib from "debug";
 import http from "http";
 import db from "../config/connect";
-const debug = debugLib("vehicules-backend:server");
+const debug = debugLib("vehicles-backend:server");
 
 /**
  * Get port from environment and store in Express.

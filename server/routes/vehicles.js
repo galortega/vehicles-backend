@@ -1,5 +1,5 @@
 import express from "express";
-import { create, getAll, remove, update } from "../controllers/vehicle";
+import { create, getAll, getById, remove, update } from "../controllers/vehicle";
 import { allowedMethods, asyncWrapper } from "../utils/wrappers";
 const router = express.Router();
 
@@ -11,7 +11,10 @@ router.get("/", asyncWrapper(getAll));
 /* POST new vehicle. */
 router.post("/", asyncWrapper(create));
 
-router.use("/:id$", allowedMethods(["PUT", "DELETE"]));
+router.use("/:id$", allowedMethods(["GET", "PUT", "DELETE"]));
+
+/* GET vehicle by id. */
+router.get("/:id", asyncWrapper(getById));
 
 /* PUT vehicle by id. */
 router.put("/:id", asyncWrapper(update));

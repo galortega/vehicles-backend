@@ -36,5 +36,7 @@ export const VehicleModel = {
 export const VehicleConfig = {
   tableName: "vehicle",
   freezeTableName: true,
-  timestamps: false,
+  timestamps: true,
+  createdAt: "creationDate",
+  updatedAt: false,
 };

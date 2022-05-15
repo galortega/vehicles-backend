@@ -50,5 +50,6 @@ export const DriverConfig = {
   freezeTableName: true,
   tableName: "driver",
   timestamps: true,
-  createdAt: "creation_date",
+  createdAt: "creationDate",
+  updatedAt: false,
 };

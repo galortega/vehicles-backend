@@ -10,6 +10,12 @@ export const getAll = async (req, res) => {
   return res.status(200).json({ status: "success", data: vehicles });
 };
 
+export const getById = async (req, res) => {
+  const { id } = req.params;
+  const vehicle = await models.Vehicle.findByPk(id);
+  return res.status(200).json({ status: "success", data: vehicle });
+};
+
 export const create = async (req, res) => {
   const vehicle = await models.Vehicle.create(req.body);
   return res.status(201).json({ status: "success", data: vehicle });

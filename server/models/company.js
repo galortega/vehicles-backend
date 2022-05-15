@@ -36,5 +36,6 @@ export const CompanyConfig = {
   freezeTableName: true,
   tableName: "company",
   timestamps: true,
-  createdAt: "creation_date",
+  createdAt: "creationDate",
+  updatedAt: false,
 };

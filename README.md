@@ -1,5 +1,5 @@
-# vehicules-backend
-Vehicules CRUD
+# vehicles-backend
+vehicles CRUD
 
 ## Stack
 *   Nodejs

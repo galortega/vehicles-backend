@@ -6,6 +6,7 @@
 import app from "../app";
 import debugLib from "debug";
 import http from "http";
+import db from "../config/connect";
 const debug = debugLib("vehicules-backend:server");
 
 /**
@@ -83,4 +84,15 @@ function onListening() {
   var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
+  try {
+    db.sequelize
+      .authenticate()
+      .then(() => console.log("Connection has been established successfully."));
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+    console.error("----------------------", error);
+  }
+  db.sequelize.sync({ force: true }).then(() => {
+    console.log("Drop and re-sync db.");
+  });
 }

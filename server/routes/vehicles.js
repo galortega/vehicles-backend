@@ -5,21 +5,21 @@ const router = express.Router();
 
 router.use("/$", allowedMethods(["GET", "POST"]));
 
-/* GET vehicles listing. */
+/* GET vehicles listing */
 router.get("/", asyncWrapper(getAll));
 
-/* POST new vehicle. */
+/* POST new vehicle */
 router.post("/", asyncWrapper(create));
 
 router.use("/:id$", allowedMethods(["GET", "PUT", "DELETE"]));
 
-/* GET vehicle by id. */
+/* GET vehicle by id */
 router.get("/:id", asyncWrapper(getById));
 
-/* PUT vehicle by id. */
+/* PUT vehicle by id */
 router.put("/:id", asyncWrapper(update));
 
-/* DELETE vehicle by id. */
+/* DELETE vehicle by id */
 router.delete("/:id", asyncWrapper(remove));
 
 export default router;

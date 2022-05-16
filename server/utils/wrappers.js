@@ -10,15 +10,21 @@ export const asyncWrapper = (fn) => async (req, res, next) => {
   }
 };
 
-export const allowedMethods = (methods = ["GET"]) => (req, res, next) => {
-  if (methods.includes(req.method)) return next();
-  res.set("Allow", methods);
-  return errorStatusHandle(res, "METHOD_NOT_ALLOWED", { methods });
-};
+export const allowedMethods =
+  (methods = ["GET"]) =>
+  (req, res, next) => {
+    if (methods.includes(req.method)) return next();
+    res.set("Allow", methods);
+    return errorStatusHandle(res, "METHOD_NOT_ALLOWED", { methods });
+  };
 
 export const errorStatusHandle = (res, payload, other) => {
   const msg = errors[payload] || errors.INTERNAL_SERVER_ERROR;
-  return res.status(msg.status).send({ error: { ...msg, ...other } });
+  return res.status(msg.httpStatus).send({
+    status: msg === errors.INTERNAL_SERVER_ERROR ? "error" : "fail",
+    message: msg.message,
+    ...other,
+  });
 };
 
 export const checkParameters = (validators) => {
@@ -26,7 +32,7 @@ export const checkParameters = (validators) => {
     const checks = validationResult(req);
     if (!checks.isEmpty()) {
       return errorStatusHandle(res, "INVALID_PARAMS", {
-        issues: checks.array({ onlyFirstError: true })
+        issues: checks.array({ onlyFirstError: true }),
       });
     }
     return next();

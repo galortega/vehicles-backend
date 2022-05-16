@@ -6,8 +6,8 @@ export const getAll = async (req, res) => {
   const drivers = await models.Driver.findAll({
     where: {
       [Op.or]: [
-        firstName && { [Op.like]: `%${firstName}%` },
-        lastName && { [Op.like]: `%${lastName}%` },
+        firstName && { firstName: { [Op.like]: `%${firstName}%` } },
+        lastName && { lastName: { [Op.like]: `%${lastName}%` } },
       ],
     },
   });

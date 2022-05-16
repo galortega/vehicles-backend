@@ -1,10 +1,10 @@
 import models from "../models";
 
 export const getAll = async (req, res) => {
-  const { driver } = req.query;
+  const { driverId } = req.query;
   const vehicles = await models.Vehicle.findAll(
-    driver && {
-      where: { driverId: driver },
+    driverId && {
+      where: { driverId: parseInt(driverId) },
     }
   );
   return res.status(200).json({ status: "success", data: vehicles });

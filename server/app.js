@@ -5,6 +5,7 @@ import logger from "morgan";
 import cors from "cors";
 import indexRouter from "./routes/index";
 import vehiclesRouter from "./routes/vehicles";
+import driversRouter from "./routes/drivers";
 
 var app = express();
 
@@ -17,5 +18,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 
 app.use("/", indexRouter);
 app.use("/vehicles", vehiclesRouter);
+app.use("/drivers", driversRouter);
 
 export default app;

@@ -1,5 +1,5 @@
 import express from "express";
-import { create, getAll, getById, remove, update } from "../controllers/vehicle";
+import { create, getAll, getById, remove, update } from "../controllers/vehicles";
 import { allowedMethods, asyncWrapper } from "../utils/wrappers";
 const router = express.Router();
 

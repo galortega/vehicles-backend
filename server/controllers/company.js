@@ -1,4 +1,5 @@
 import { Company } from "../models/index";
+import { errorStatusHandle } from "../utils/wrappers";
 
 export const getAll = async (req, res) => {
   const companies = await Company.findAll();
@@ -19,9 +20,6 @@ export const bulkCreate = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "Internal server error",
-      error,
-    });
+    return errorStatusHandle(res, error);
   }
 };

@@ -24,6 +24,11 @@ const sequelize = new Sequelize(config.DB, config.USER, config.PASSWORD, {
   },
   dialectOptions: {
     useUTC: false, // for reading from database
+    ssl: {
+      // DO NOT DO THIS
+      // set up your ca correctly to trust the connection
+      rejectUnauthorized: false,
+    },
   },
   timezone: "-05:00", // for writing to database
 });
@@ -32,5 +37,7 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
+
+db.sequelize.sync({ force: true }).then(() => console.log("Sync complete"));
 
 export default db;

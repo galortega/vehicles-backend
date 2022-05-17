@@ -8,10 +8,10 @@ const Company = db.sequelize.define("Company", CompanyModel, CompanyConfig);
 const Driver = db.sequelize.define("Driver", DriverModel, DriverConfig);
 const Vehicle = db.sequelize.define("vehicle", VehicleModel, VehicleConfig);
 
-Company.hasMany(Driver, { foreignKey: "companyId" });
-Driver.belongsTo(Company, { foreignKey: "companyId" });
+Company.hasMany(Driver, { foreignKey: "companyId", constraints: false });
+Driver.belongsTo(Company, { foreignKey: "companyId", constraints: false });
 
-Driver.hasMany(Vehicle, { foreignKey: "driverId" });
-Vehicle.belongsTo(Driver, { foreignKey: "driverId" });
+Driver.hasMany(Vehicle, { foreignKey: "driverId", constraints: false });
+Vehicle.belongsTo(Driver, { foreignKey: "driverId", constraints: false });
 
 export default { Company, Driver, Vehicle };

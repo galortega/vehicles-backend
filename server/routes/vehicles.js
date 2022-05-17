@@ -7,7 +7,12 @@ import {
   remove,
   update,
 } from "../controllers/vehicles";
-import { allowedMethods, asyncWrapper } from "../utils/wrappers";
+import {
+  allowedMethods,
+  asyncWrapper,
+  checkParameters,
+} from "../utils/wrappers";
+import { checkCreate } from "../validations/vehicle";
 const router = express.Router();
 
 router.use("/$", allowedMethods(["GET", "POST"]));
@@ -16,7 +21,7 @@ router.use("/$", allowedMethods(["GET", "POST"]));
 router.get("/", asyncWrapper(getAll));
 
 /* POST new vehicle */
-router.post("/", asyncWrapper(create));
+router.post("/", checkParameters(checkCreate), asyncWrapper(create));
 
 router.use("/bulk$", allowedMethods(["POST"]));
 

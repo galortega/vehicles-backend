@@ -14,4 +14,4 @@ Driver.belongsTo(Company, { foreignKey: "companyId", constraints: false });
 Driver.hasMany(Vehicle, { foreignKey: "driverId", constraints: false });
 Vehicle.belongsTo(Driver, { foreignKey: "driverId", constraints: false });
 
-export default { Company, Driver, Vehicle };
+export { Company, Driver, Vehicle };

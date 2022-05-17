@@ -6,6 +6,7 @@ import cors from "cors";
 import indexRouter from "./routes/index";
 import vehiclesRouter from "./routes/vehicles";
 import driversRouter from "./routes/drivers";
+import companyRouter from "./routes/company";
 
 var app = express();
 
@@ -19,5 +20,6 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/", indexRouter);
 app.use("/vehicles", vehiclesRouter);
 app.use("/drivers", driversRouter);
+app.use("/companies", companyRouter);
 
 export default app;

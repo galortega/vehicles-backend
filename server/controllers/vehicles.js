@@ -1,8 +1,8 @@
-import models from "../models";
+import { Vehicle } from "../models";
 
 export const getAll = async (req, res) => {
   const { driverId } = req.query;
-  const vehicles = await models.Vehicle.findAll({
+  const vehicles = await Vehicle.findAll({
     where: driverId && { driverId: parseInt(driverId) },
     order: [["creationDate", "DESC"]],
   });
@@ -11,25 +11,45 @@ export const getAll = async (req, res) => {
 
 export const getById = async (req, res) => {
   const { id } = req.params;
-  const vehicle = await models.Vehicle.findByPk(id);
+  const vehicle = await Vehicle.findByPk(id);
   return res.status(200).json({ status: "success", data: vehicle });
 };
 
 export const create = async (req, res) => {
-  const vehicle = await models.Vehicle.create(req.body);
+  const vehicle = await Vehicle.create(req.body);
   return res.status(201).json({ status: "success", data: vehicle });
 };
 
 export const update = async (req, res) => {
-  const vehicle = await models.Vehicle.update(req.body, {
+  const vehicle = await Vehicle.update(req.body, {
     where: { id: req.params.id },
   });
   return res.status(200).json({ status: "success", data: vehicle });
 };
 
 export const remove = async (req, res) => {
-  const vehicle = await models.Vehicle.destroy({
+  const vehicle = await Vehicle.destroy({
     where: { id: req.params.id },
   });
   return res.status(200).json({ status: "success", data: vehicle });
+};
+
+export const bulkCreate = async (req, res) => {
+  const { vehiclesToCreate } = req.body;
+
+  try {
+    const createdVehicles = await Vehicle.bulkCreate(vehiclesToCreate, {
+      returning: true,
+    });
+
+    return res.status(200).json({
+      message: "Vehicles created successfully",
+      data: createdVehicles,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Internal server error",
+      error,
+    });
+  }
 };

@@ -38,6 +38,6 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.sequelize.sync({ force: true }).then(() => console.log("Sync complete"));
+// db.sequelize.sync({ force: true }).then(() => console.log("Sync complete"));
 
 export default db;

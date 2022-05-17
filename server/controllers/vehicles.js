@@ -1,4 +1,5 @@
 import { Vehicle } from "../models";
+import { errorStatusHandle } from "../utils/wrappers";
 
 export const getAll = async (req, res) => {
   const { driverId } = req.query;
@@ -38,7 +39,7 @@ export const bulkCreate = async (req, res) => {
   const { vehiclesToCreate } = req.body;
 
   try {
-    const createdVehicles = await Vehicle.bulkCreate(vehiclesToCreate, {
+    const createdVehicles = await Vehcle.bulkCreate(vehiclesToCreate, {
       returning: true,
     });
 
@@ -47,9 +48,7 @@ export const bulkCreate = async (req, res) => {
       data: createdVehicles,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Internal server error",
-      error,
-    });
+    console.log(error);
+    return errorStatusHandle(res, error);
   }
 };
